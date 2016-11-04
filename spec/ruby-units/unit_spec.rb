@@ -2170,12 +2170,15 @@ describe "Equations with Units" do
 end
 
 describe "Unit comparison override test (hash override)" do
-  specify "Testing" do
+  specify "Equality tests" do
     a = [RubyUnits::Unit.new("2 kg"), RubyUnits::Unit.new("2 kg")].uniq
     b = RubyUnits::Unit.new("2 kg")
     c = RubyUnits::Unit.new("2 kg")
+    d = RubyUnits::Unit.new("4 kg")
     expect(a.count).to eq(1)
     expect(b.hash).to eq(c.hash)
     expect(b).to eq(c)
+    expect(b.eql? c).to eq(true)
+    expect(c).not_to eq(d)
   end
 end
