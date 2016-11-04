@@ -1590,5 +1590,11 @@ module RubyUnits
         @@UNIT_REGEX = nil #invalidate the unit regex
       end
     end
+
+    # override hash to correct object equality
+    public
+    def hash
+      @@definitions.hash
+    end
   end
 end

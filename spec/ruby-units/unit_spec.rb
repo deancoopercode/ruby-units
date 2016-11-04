@@ -2168,3 +2168,14 @@ describe "Equations with Units" do
     specify { expect(((p*v)/(n*r)).convert_to('tempK')).to be_within(RubyUnits::Unit.new('0.1 degK')).of(RubyUnits::Unit.new('12027.2 tempK')) }
   end
 end
+
+describe "Unit comparison override test (hash override)" do
+  specify "Testing" do
+    a = [RubyUnits::Unit.new("2 kg"), RubyUnits::Unit.new("2 kg")].uniq
+    b = RubyUnits::Unit.new("2 kg")
+    c = RubyUnits::Unit.new("2 kg")
+    expect(a.count).to eq(1)
+    expect(b.hash).to eq(c.hash)
+    expect(b).to eq(c)
+  end
+end
