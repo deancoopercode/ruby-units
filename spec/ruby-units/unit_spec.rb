@@ -2180,5 +2180,6 @@ describe "Unit comparison override test (hash override)" do
     expect(b).to eq(c)
     expect(b.eql? c).to eq(true)
     expect(c).not_to eq(d)
+    expect(b.hash).not_to eq(d.hash)
   end
 end

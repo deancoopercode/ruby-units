@@ -1,4 +1,5 @@
-# encoding: utf-8
+
+  # encoding: utf-8
 require 'date'
 # Copyright 2006-2015
 # @author Kevin C. Olbrich, Ph.D.
@@ -1592,9 +1593,13 @@ module RubyUnits
     end
 
     # override hash to correct object equality
+    # find all instance variables and add the individual hashes.
+    # use #instance_variable_get to read the value of each attribute
     public
     def hash
-      @@definitions.hash
+      variables = instance_variables.map{|ivar| instance_variable_get ivar}
+      total_hash = variables.inject(0){|sum,x| sum + x.hash}
+      total_hash
     end
   end
 end
